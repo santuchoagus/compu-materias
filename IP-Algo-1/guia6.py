@@ -134,5 +134,67 @@ def es_nombre_corto(nombre : str) -> bool:
 Recordar que un año es bisiesto si es múltiplo de 400, o bien
 es múltiplo de 4 pero no de 100.
 """
-#def es_bisiesto(y : int) -> bool:
-#	return (y % 400 == 0) and  
+def es_bisiesto(y : int) -> bool:
+	return (y % 400 == 0) or ( y % 4 == 0 and not y % 100 == 0)
+
+
+""" 
+4. En una plantación de pinos, de cada árbol se conoce la altura expresada en metros.
+El peso de un pino se puede estimar a partir de la altura de la siguiente manera:
+3 kg por cada centímetro hasta 3 metros,
+2 kg por cada centímetro arriba de los 3 metros.
+resolver este ejercicio usando las funciones de python min y max
+"""
+def peso_pino(m : int) -> int: 
+	h = 100*m # altura en cm
+	return 3*min([300, h]) + 2*max([0, h-300])
+
+def es_peso_util(peso : int) -> bool:
+	return bool(max([0, peso-399]) and min([peso-1001, 0]))
+
+def sirve_pino(m : int) -> bool:
+	return es_peso_util(peso_pino(m))
+
+
+"""
+5. Implementar los siguientes problemas de alternativa condicional (if/else).
+Especificar sin usar ifthenelsefi.
+"""
+
+"""
+5.1. devolver_el_doble_si_es_par(numero);
+que devuelve el doble del número en caso de ser par y el mismo número en caso contrario.
+
+especifico:
+problema devolver_el_doble_si_es_par(in n : Z) : Z {
+	requiere: {True}
+	asegura: {n=0 (mod 2) --> res=2*n}
+	asegura: {n=1 (mod 2) --> res=n}
+}
+"""
+def devolver_el_doble_si_es_par(n : int) -> int:
+	return 2*n if n % 2 == 0 else n
+
+"""
+5.2 devolver_valor_si_es_par_sino_el_que_sigue(numero);
+que devuelve el mismo número si es par y sino el siguiente.
+
+especifico:
+devolver_valor_si_es_par_sino_el_que_sigue(in n : Z) : Z {
+	requiere: {True}
+	asegura: {n=0 (mod 2) --> res=n}
+	asegura: {n=1 (mod 2) --> res=n+1}
+}
+"""
+def devolver_valor_si_es_par_sino_el_que_sigue(n : int) -> int:
+	return n if n % 2 == 0 else n+1
+
+"""
+5.4 lindo_nombre(nombre) que dado un nombre, si la longitud es igual o mayor a 5 devolver una frase que diga
+Tu nombre tiene muchas letras! y sino, Tu nombre tiene menos de 5 caracteres.
+"""
+def lindo_nombre(nombre : str) -> str:
+	if (len(nombre) >= 5):
+		return "Tu nombre tiene muchas letras"
+	return "Tu nombre tiene menos de 5 caracteres"
+	
